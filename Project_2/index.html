@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <div class="search">
+      <input type="text" id="input1" />
+      <button onclick="fun()">search</button>
+      <div id="result"></div>
+    </div>
+    <script>
+      function fun() {
+        let res;
+        let search = document.getElementById("input1").value;
+        fetch("travel api.json")
+          .then((response) => response.json())
+          .then((data) => {
+            if (search == "beachs" || search == "beach") {
+              let beaches = data.beaches;
+              let counter = 1;
+              beaches.map((beach) => {
+                if (counter == 1) {
+                  document.getElementById("result").innerHTML = `<h1>
+                ${beach.name}}
+                  </h1> <p> ${beach.description} </p>` ;
+                  counter++;
+                }
+              });
+            } else {
+              console.log("uns");
+            }
+          });
+      }
+    </script>
+  </body>
+</html>
